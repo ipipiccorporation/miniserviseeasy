@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>File Upload and Download</h1>
+<input type="file" id="fileUpload" name="fileUpload" multiple size="50" onchange="myFunction()" />
+<button onclick="uploadFile()">Upload</button>
+<button onclick="downloadFile()">Download</button>
+<p id="demo"></p>
+<script>
+    function uploadFile() {
+        var file = document.getElementById("fileUpload").files[0];
+        var path = "http://example.com/upload/" + file.name;
+        document.getElementById("demo").innerHTML = "Uploaded file path is: " + path;
+    }
+
+    function downloadFile() {
+        var file = document.getElementById("fileUpload").files[0];
+        var url = "http://example.com/download/" + file.name;
+        var link = document.createElement("a");
+        link.href = url;
+        link.download = file.name;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+</script>
+</body>
+</html>
